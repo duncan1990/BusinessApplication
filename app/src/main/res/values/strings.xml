@@ -1,0 +1,26 @@
+<resources>
+    <string name="app_name">My Business App</string>
+    <string name="filter">Filter</string>
+    <string name="customer">Customer</string>
+    <string name="product">Product</string>
+    <string name="socket_app">Socket App</string>
+    <string name="export">Export</string>
+    <string name="add">ADD</string>
+    <string name="del">DEL</string>
+    <string name="company_name_enter">Client name:</string>
+    <string name="country_name_enter">Country:</string>
+    <string name="total_number_enter">Total:</string>
+    <string name="save">Save</string>
+    <string name="close">Close</string>
+    <string name="name">Name</string>
+    <string name="country">Country</string>
+    <string name="total">Total</string>
+    <string name="motor_sport">Motor Sport</string>
+    <string name="turkey">Turkey</string>
+    <string name="confirm_delete">Confirm Delete</string>
+    <string name="question_delete_all_customer">Are you sure you want to delete all customer?</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>

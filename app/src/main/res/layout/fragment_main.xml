@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/buttonFilter"
+        android:theme="@style/MyButtonTheme"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginTop="50dp"
+        android:backgroundTint="@color/orange"
+        android:text="@string/filter"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/lLayoutFirst"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/buttonFilter"
+        app:layout_constraintStart_toStartOf="@+id/buttonFilter"
+        app:layout_constraintTop_toBottomOf="@+id/buttonFilter">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnCustomer"
+            android:theme="@style/MyButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:text="@string/customer"
+            android:backgroundTint="@color/blue_100"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnProduct"
+            android:theme="@style/MyButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:text="@string/product"
+            android:backgroundTint="@color/blue_100"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/lLayoutSecond"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_marginTop="10dp"
+        app:layout_constraintEnd_toEndOf="@+id/lLayoutFirst"
+        app:layout_constraintStart_toStartOf="@+id/lLayoutFirst"
+        app:layout_constraintTop_toBottomOf="@+id/lLayoutFirst">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnExport"
+            android:theme="@style/MyButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:text="@string/export"
+            android:backgroundTint="@color/orange"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSocketApp"
+            android:theme="@style/MyButtonTheme"
+            android:layout_width="0dp"
+            android:layout_height="80dp"
+            android:text="@string/socket_app"
+            android:backgroundTint="@color/orange"
+            android:layout_marginStart="10dp"
+            android:layout_weight="1" />
+
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
