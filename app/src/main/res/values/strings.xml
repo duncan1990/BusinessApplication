@@ -23,4 +23,13 @@
     <string name="no">No</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="price">Price</string>
+    <string name="client">Client</string>
+    <string name="quantity">Quantity</string>
+    <string name="enter_all_fields">Tüm bilgileri girdiğinizden emin olun!</string>
+    <string name="success_save">Successful Registered Data</string>
+    <string name="unsuccess_save">Unsuccessfully Register Data</string>
+    <string name="confirm_save">Confirm Save</string>
+    <string name="question_save">Are you sure to save?</string>
+    <string name="update_total">Fiyat Güncellenmesi Yapıldı</string>
 </resources>

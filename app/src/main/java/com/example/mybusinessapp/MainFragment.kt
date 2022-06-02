@@ -35,6 +35,14 @@ class MainFragment : Fragment() {
                     }
                 }
             }
+
+            btnProduct.setOnClickListener {
+                findNavController().apply {
+                    currentDestination?.getAction(R.id.action_mainFragment_to_productFragment)?.run {
+                        navigate(R.id.action_mainFragment_to_productFragment)
+                    }
+                }
+            }
         }
     }
 

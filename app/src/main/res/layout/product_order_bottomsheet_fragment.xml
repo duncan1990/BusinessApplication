@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:background="@color/blue_100"
     android:layout_height="wrap_content">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputCompanyName"
+        android:id="@+id/textInputClientName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="30dp"
@@ -14,50 +17,57 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCompanyName"
+        <AutoCompleteTextView
+            android:id="@+id/autoCompleteTextView"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:imeOptions="actionNext"
-            android:hint="@string/company_name_enter" />
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:textColor="@color/white"
+            android:inputType="none"
+            android:text="@string/client"/>
+
+        <!--      <com.google.android.material.textfield.TextInputEditText
+                  android:id="@+id/editTextClientName"
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:imeOptions="actionNext"
+                  android:hint="@string/company_name_enter" />-->
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputCountry"
+        android:id="@+id/textInputQuantity"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="@+id/textInputCompanyName"
-        app:layout_constraintStart_toStartOf="@+id/textInputCompanyName"
-        app:layout_constraintTop_toBottomOf="@+id/textInputCompanyName">
+        android:textColorHint="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textInputClientName"
+        app:layout_constraintStart_toStartOf="@+id/textInputClientName"
+        app:layout_constraintTop_toBottomOf="@+id/textInputClientName">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextCountry"
+            android:id="@+id/editTextQuantity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="@string/country_name_enter"
+            android:inputType="number"
+            android:textColor="@color/white"
+            android:hint="@string/quantity"
             android:imeOptions="actionNext" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputTotal"
+    <TextView
+        android:id="@+id/textViewTotal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="30dp"
-        android:layout_marginBottom="24dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputCountry"
-        app:layout_constraintStart_toStartOf="@+id/textInputCountry"
-        app:layout_constraintTop_toBottomOf="@+id/textInputCountry"
-        app:layout_constraintVertical_bias="0.0">
+        android:textAlignment="center"
+        android:text="@string/total"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/textInputQuantity"
+        app:layout_constraintStart_toStartOf="@+id/textInputQuantity"
+        app:layout_constraintTop_toBottomOf="@+id/textInputQuantity">
 
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editTextTotal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/total_number_enter"
-            android:imeOptions="actionDone" />
-    </com.google.android.material.textfield.TextInputLayout>
+    </TextView>
 
     <LinearLayout
         android:id="@+id/lLayoutButton"
@@ -68,9 +78,9 @@
         android:orientation="horizontal"
         android:weightSum="2"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/textInputTotal"
-        app:layout_constraintStart_toStartOf="@+id/textInputTotal"
-        app:layout_constraintTop_toBottomOf="@+id/textInputTotal"
+        app:layout_constraintEnd_toEndOf="@+id/textViewTotal"
+        app:layout_constraintStart_toStartOf="@+id/textViewTotal"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTotal"
         app:layout_constraintVertical_bias="0.0">
 
         <com.google.android.material.button.MaterialButton
@@ -91,9 +101,9 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="30dp"
             android:layout_weight="1"
-            android:backgroundTint="@color/black"
+            android:backgroundTint="@color/orange"
             android:text="@string/close"
-            android:textColor="@color/white"
+            android:textColor="@color/black"
             android:textSize="20sp"
             android:theme="@style/MyButtonTheme" />
 

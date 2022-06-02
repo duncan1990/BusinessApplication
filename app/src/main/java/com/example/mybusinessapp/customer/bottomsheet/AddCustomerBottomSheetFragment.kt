@@ -1,4 +1,4 @@
-package com.example.mybusinessapp.customer
+package com.example.mybusinessapp.customer.bottomsheet
 
 import android.os.Bundle
 import android.view.LayoutInflater

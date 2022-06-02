@@ -5,9 +5,10 @@ import android.content.Context
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.widget.Toast
+import com.example.mybusinessapp.R
 import com.example.mybusinessapp.model.Customer
 
-class DBHelper(val context: Context) : SQLiteOpenHelper(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION) {
+class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DBHelper.DATABASE_NAME, null, DBHelper.DATABASE_VERSION) {
     private val TABLE_NAME= "Customer"
     private val COL_ID = "id"
     private val COL_CLIENT_NAME = "clientName"
@@ -35,13 +36,33 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DBHelper.DATABA
 
         val result = sqliteDB.insert(TABLE_NAME,null,contentValues)
 
-        Toast.makeText(context, if(result != -1L) "Kayıt Başarılı" else "Kayıt yapılamadı.", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, if(result != -1L) context.getString(R.string.success_save) else context.getString(R.string.unsuccess_save), Toast.LENGTH_SHORT).show()
     }
 
     fun readData():MutableList<Customer>{
         val customerList = mutableListOf<Customer>()
         val sqliteDB = this.readableDatabase
         val query = "SELECT * FROM $TABLE_NAME"
+        val result = sqliteDB.rawQuery(query,null)
+        if(result.moveToFirst()){
+            do {
+                val customer = Customer()
+                customer.id = result.getString(result.getColumnIndexOrThrow(COL_ID)).toInt()
+                customer.clientName = result.getString(result.getColumnIndexOrThrow(COL_CLIENT_NAME))
+                customer.country = result.getString(result.getColumnIndexOrThrow(COL_COUNTRY))
+                customer.total = result.getString(result.getColumnIndexOrThrow(COL_TOTAL)).toDouble()
+                customerList.add(customer)
+            }while (result.moveToNext())
+        }
+        result.close()
+        sqliteDB.close()
+        return customerList
+    }
+
+    fun readFilterData():MutableList<Customer>{
+        val customerList = mutableListOf<Customer>()
+        val sqliteDB = this.readableDatabase
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_CLIENT_NAME LIKE '%?%'"
         val result = sqliteDB.rawQuery(query,null)
         if(result.moveToFirst()){
             do {
@@ -65,14 +86,14 @@ class DBHelper(val context: Context) : SQLiteOpenHelper(context, DBHelper.DATABA
 
     }
 
-    fun updateTotal(total:Double) {
+    fun updateTotal(total:Double, cname: String) {
         val db = this.writableDatabase
-        val query = "SELECT * FROM $TABLE_NAME"
-        val result = db.rawQuery(query,null)
+        val query = "SELECT * FROM $TABLE_NAME WHERE $COL_CLIENT_NAME = ?"
+        val result = db.rawQuery(query, arrayOf(cname))
         if(result.moveToFirst()){
             do {
                 val cv = ContentValues()
-                cv.put(COL_TOTAL,(result.getInt(result.getColumnIndexOrThrow(COL_TOTAL))+total))
+                cv.put(COL_TOTAL,(result.getDouble(result.getColumnIndexOrThrow(COL_TOTAL))+total))
                 db.update(TABLE_NAME,cv, "$COL_ID=? AND $COL_CLIENT_NAME=?",
                         arrayOf(result.getString(result.getColumnIndexOrThrow(COL_ID)),
                                 result.getString(result.getColumnIndexOrThrow(COL_CLIENT_NAME))))
