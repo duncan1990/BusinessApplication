@@ -36,7 +36,7 @@ class DBHelper(private val context: Context) : SQLiteOpenHelper(context, DBHelpe
 
         val result = sqliteDB.insert(TABLE_NAME,null,contentValues)
 
-        Toast.makeText(context, if(result != -1L) context.getString(R.string.success_save) else context.getString(R.string.unsuccess_save), Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, if(result != -1L) context.getString(R.string.success_save) else context.getString(R.string.un_success_save), Toast.LENGTH_SHORT).show()
     }
 
     fun readData():MutableList<Customer>{

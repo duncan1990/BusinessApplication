@@ -21,7 +21,11 @@ class ProductOrderBottomSheetFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View {
         _binding = ProductOrderBottomsheetFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         val clientsArrayList : ArrayList<String> = arrayListOf()
         val cList = db.readData()
         cList.forEach { _list ->
@@ -29,14 +33,9 @@ class ProductOrderBottomSheetFragment : BottomSheetDialogFragment() {
         }
         val arrayAdapter = ArrayAdapter(requireContext(), R.layout.item_dropdown, clientsArrayList)
         binding.autoCompleteTextView.setAdapter(arrayAdapter)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
         observeQuantityTextUI()
         setupOnClickListener()
+        setupSearchBar(clientsArrayList, arrayAdapter)
     }
 
     private fun setupOnClickListener() {
@@ -100,6 +99,30 @@ class ProductOrderBottomSheetFragment : BottomSheetDialogFragment() {
         }
         val alert = builder.create()
         alert.show()
+    }
+
+    private fun setupSearchBar(clientsArrayList: ArrayList<String>, arrayAdapter: ArrayAdapter<String>) {
+        binding.autoCompleteTextView.addTextChangedListener(object : TextWatcher {
+
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(
+                s: CharSequence, start: Int,
+                count: Int, after: Int
+            ) {
+            }
+
+            override fun onTextChanged(
+                s: CharSequence, start: Int,
+                before: Int, count: Int
+            ) {
+                if (s.toString() != "") {
+                    arrayAdapter.filter.filter(s)
+                } else {
+                    binding.autoCompleteTextView.setAdapter(arrayAdapter)
+                }
+            }
+        })
     }
 
     companion object {
